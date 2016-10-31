@@ -26,6 +26,7 @@ export class Video extends Component {
         };
         this.onClick = this.onClick.bind(this);
         this.onPlay = this.onPlay.bind(this);
+        this.onEnd = this.onEnd.bind(this);
     }
 
     componentDidMount() {
@@ -34,25 +35,28 @@ export class Video extends Component {
         }
         else if (this.props.videoType === 'raw') {
             domUtil.on(this.refs.video, 'play', this.onPlay);
+            domUtil.on(this.refs.video, 'ended', this.onEnd);
         }
     }
 
     componentWillUnmount() {
         if (this.props.videoType === 'raw') {
             domUtil.off(this.refs.video, 'play', this.onPlay);
+            domUtil.off(this.refs.video, 'ended', this.onEnd);
         }
     }
 
     onPlay() {
-        domUtil.off(this.refs.video, 'play', this.onPlay);
         this.setState({start: true});
     }
 
+    onEnd() {
+        this.setState({start: false});
+    }
+
     onClick() {
-        if (this.props.videoType === 'raw') {
-            const video = this.refs.video;
-            video.play();
-        }
+        const video = this.refs.video;
+        video.play();
     }
 
     renderRaw() {
