@@ -130,7 +130,7 @@ Video.propTypes = {
     height: PropTypes.number.isRequired,
     poster: PropTypes.string,
     videoType: PropTypes.oneOf(['iframe', 'raw']),
-    videoUrl: PropTypes.string
+    src: PropTypes.string
 };
 
 Video.defaultProps = {
