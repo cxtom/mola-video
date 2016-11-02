@@ -36,6 +36,7 @@ export class Video extends Component {
         else if (this.props.videoType === 'raw') {
             domUtil.on(this.refs.video, 'play', this.onPlay);
             domUtil.on(this.refs.video, 'ended', this.onEnd);
+            domUtil.on(this.refs.video, 'pause', this.onEnd);
         }
     }
 
@@ -43,6 +44,7 @@ export class Video extends Component {
         if (this.props.videoType === 'raw') {
             domUtil.off(this.refs.video, 'play', this.onPlay);
             domUtil.off(this.refs.video, 'ended', this.onEnd);
+            domUtil.off(this.refs.video, 'pause', this.onEnd);
         }
     }
 
@@ -66,6 +68,7 @@ export class Video extends Component {
                 src={this.props.src}
                 poster={this.props.poster}
                 className="mola-video-raw"
+                data-type="btn"
                 autoBuffer
                 autoPlay
                 preload="none"
@@ -81,6 +84,7 @@ export class Video extends Component {
             <iframe
                 src={this.props.src}
                 className="mola-video-iframe"
+                data-type="btn"
                 scrolling="no"
                 frameBorder="0"
                 allowFullScreen="true" />
@@ -101,10 +105,15 @@ export class Video extends Component {
         } = this.props;
 
         const start = this.state.start;
+        const act = videoType === 'iframe' ? 'iframe' : (
+            start ? 'pause' : 'play'
+        );
 
         return (
             <div
                 onClick={videoType === 'iframe' ? null : this.onClick}
+                dara-type="btn"
+                data-click={`{"mod": "video", "act": "b_${act}"}`}
                 className={cx('mola-video', className, {'state-start': start})}
                 style={{
                     ...style,
