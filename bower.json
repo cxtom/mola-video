@@ -12,7 +12,7 @@
     "keywords": [
         "react",
         "mola",
-        "download-layer"
+        "video"
     ],
     "moduleTypes": "umd",
     "homepage": "https://github.com/cxtom/mola-video",
@@ -36,8 +36,7 @@
         "classnames": "^2.2.5",
         "mola": "^1.0.0",
         "react": "^0.14.8",
-        "react-dom": "^0.14.8",
-        "melon": "^0.3.9"
+        "react-dom": "^0.14.8"
     },
-    "version": "1.0.2"
+    "version": "1.0.3"
 }

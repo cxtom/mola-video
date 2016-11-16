@@ -12,7 +12,6 @@ import {
 } from 'mola';
 
 import cx from 'classnames';
-import domUtil from 'melon/common/util/dom';
 
 export const type = 'Video';
 export const level = MOLA_COMPONENT_LEVEL_ATOM;
@@ -27,25 +26,6 @@ export class Video extends Component {
         this.onClick = this.onClick.bind(this);
         this.onPlay = this.onPlay.bind(this);
         this.onEnd = this.onEnd.bind(this);
-    }
-
-    componentDidMount() {
-        if (this.props.videoType === 'iframe') {
-            this.setState({start: true});
-        }
-        else if (this.props.videoType === 'raw') {
-            domUtil.on(this.refs.video, 'play', this.onPlay);
-            domUtil.on(this.refs.video, 'ended', this.onEnd);
-            domUtil.on(this.refs.video, 'pause', this.onEnd);
-        }
-    }
-
-    componentWillUnmount() {
-        if (this.props.videoType === 'raw') {
-            domUtil.off(this.refs.video, 'play', this.onPlay);
-            domUtil.off(this.refs.video, 'ended', this.onEnd);
-            domUtil.off(this.refs.video, 'pause', this.onEnd);
-        }
     }
 
     onPlay() {
@@ -68,6 +48,9 @@ export class Video extends Component {
                 src={this.props.src}
                 poster={this.props.poster}
                 className="mola-video-raw"
+                onPlay={this.onPlay}
+                onPause={this.onEnd}
+                onEnded={this.onEnd}
                 data-type="btn"
                 autoBuffer
                 autoPlay
@@ -83,6 +66,7 @@ export class Video extends Component {
         return (
             <iframe
                 src={this.props.src}
+                onLoad={this.onPlay}
                 className="mola-video-iframe"
                 data-type="btn"
                 scrolling="no"
