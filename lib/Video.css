@@ -1,0 +1,18 @@
+.mola-video {
+  display: block;
+  position: absolute;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.mola-video-iframe,
+.mola-video-raw {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+}
+.mola-video.state-start .mola-video-iframe,
+.mola-video.state-start .mola-video-raw {
+  opacity: 1;
+  visibility: visible;
+}
