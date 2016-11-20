@@ -43,6 +43,8 @@ export class Video extends Component {
 
     renderRaw() {
 
+        const {autoPlay, title} = this.props;
+
         return (
             <video
                 src={this.props.src}
@@ -51,9 +53,10 @@ export class Video extends Component {
                 onPlay={this.onPlay}
                 onPause={this.onEnd}
                 onEnded={this.onEnd}
+                title={title}
                 data-type="btn"
                 autoBuffer
-                autoPlay
+                autoPlay={autoPlay}
                 preload="none"
                 width="100%"
                 height="100%"
@@ -123,7 +126,8 @@ Video.propTypes = {
     height: PropTypes.number.isRequired,
     poster: PropTypes.string,
     videoType: PropTypes.oneOf(['iframe', 'raw']),
-    src: PropTypes.string
+    src: PropTypes.string,
+    autoPlay: PropTypes.bool
 };
 
 Video.defaultProps = {
@@ -131,7 +135,8 @@ Video.defaultProps = {
     left: 0,
     width: 320,
     height: 180,
-    videoType: 'iframe'
+    videoType: 'iframe',
+    autoPlay: true
 };
 
 export default registerComponent(type, level)(Video);

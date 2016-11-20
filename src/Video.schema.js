@@ -3,6 +3,8 @@
  * @author cxtom <cxtom2008@gmail.com>
  */
 
+import update from 'react-addons-update';
+
 export {type, level} from './Video';
 
 export const editorProps = {
@@ -12,7 +14,7 @@ export const editorProps = {
     selectable: true
 };
 
-export default {
+const DEFAULT_SCHEMA = {
     type: 'object',
     properties: {
         top: {
@@ -61,3 +63,30 @@ export default {
     },
     required: ['top', 'left', 'width', 'height', 'videoType', 'src']
 };
+
+export default function (props) {
+
+    switch (props.videoType) {
+        case 'raw':
+            return update(DEFAULT_SCHEMA, {
+                properties: {
+                    $merge: {
+                        autoPlay: {
+                            'title': '是否自动播放 (浏览器支持时)',
+                            'type': 'boolean',
+                            'default': true
+                        },
+                        title: {
+                            title: '视频标题（锁屏后显示）',
+                            type: 'string'
+                        }
+                    }
+                }
+            });
+        case 'iframe':
+        default:
+            return DEFAULT_SCHEMA;
+    }
+
+
+}
