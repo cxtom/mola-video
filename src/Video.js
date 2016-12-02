@@ -28,6 +28,13 @@ export class Video extends Component {
         this.onEnd = this.onEnd.bind(this);
     }
 
+    componentDidMount() {
+        if (this.props.videoType === 'raw' && this.refs.video && this.props.playsInline) {
+            this.refs.video.setAttribute('webkit-playsinline', 'webkit-playsinline');
+            this.refs.video.setAttribute('playsinline', 'playsinline');
+        }
+    }
+
     onPlay() {
         this.setState({start: true});
     }
@@ -37,8 +44,9 @@ export class Video extends Component {
     }
 
     onClick() {
+        const start = this.state.start;
         const video = this.refs.video;
-        video.play();
+        video[start ? 'pause' : 'play']();
     }
 
     renderRaw() {
@@ -56,6 +64,7 @@ export class Video extends Component {
                 title={title}
                 data-type="btn"
                 autoBuffer
+                controls
                 autoPlay={autoPlay}
                 preload="none"
                 width="100%"
@@ -127,7 +136,9 @@ Video.propTypes = {
     poster: PropTypes.string,
     videoType: PropTypes.oneOf(['iframe', 'raw']),
     src: PropTypes.string,
-    autoPlay: PropTypes.bool
+    autoPlay: PropTypes.bool,
+    playsInline: PropTypes.bool,
+    title: PropTypes.string
 };
 
 Video.defaultProps = {
@@ -136,7 +147,8 @@ Video.defaultProps = {
     width: 320,
     height: 180,
     videoType: 'iframe',
-    autoPlay: true
+    autoPlay: true,
+    playsInline: false
 };
 
 export default registerComponent(type, level)(Video);

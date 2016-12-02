@@ -79,6 +79,11 @@ export default function (props) {
                         title: {
                             title: '视频标题（锁屏后显示）',
                             type: 'string'
+                        },
+                        playsInline: {
+                            'type': 'boolean',
+                            'title': 'IOS下是否全屏',
+                            'default': false
                         }
                     }
                 }

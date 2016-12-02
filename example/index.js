@@ -26,6 +26,8 @@ ReactDOM.render(
         <Video
             top={320}
             left={27.5}
+            autoPlay={false}
+            playsInline
             videoType="raw"
             poster="http://img.9ku.com/geshoutuji/singertuji/2/2791/2791_3.jpg"
             src="http://boscdn.bpc.baidu.com/mms-res/m4v-video/kouyuduihua.mp4"/>
