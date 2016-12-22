@@ -4,17 +4,9 @@
  */
 
 import React, {Component, PropTypes} from 'react';
-
-import {
-    registerComponent,
-    MOLA_COMPONENT_LEVEL_ATOM,
-    px2rem
-} from 'mola';
-
+import {registerComponent, px2rem} from 'mola';
+import {type, level} from './constants';
 import cx from 'classnames';
-
-export const type = 'Video';
-export const level = MOLA_COMPONENT_LEVEL_ATOM;
 
 export class Video extends Component {
 
@@ -125,8 +117,6 @@ export class Video extends Component {
     }
 
 }
-
-Video.displayName = type;
 
 Video.propTypes = {
     top: PropTypes.number.isRequired,

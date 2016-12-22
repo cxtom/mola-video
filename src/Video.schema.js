@@ -4,8 +4,7 @@
  */
 
 import update from 'react-addons-update';
-
-export {type, level} from './Video';
+export {type, level} from './constants';
 
 export const editorProps = {
     movable: true,
@@ -19,23 +18,31 @@ const DEFAULT_SCHEMA = {
     properties: {
         top: {
             'title': 'top',
-            'type': 'number',
-            'default': 0
+            'type': 'string',
+            'format': 'numeric',
+            'formatMinimum': '0',
+            'default': '0'
         },
         left: {
             'title': 'left',
-            'type': 'number',
-            'default': 0
+            'type': 'string',
+            'format': 'numeric',
+            'formatMinimum': '0',
+            'default': '0'
         },
         width: {
             'title': '宽度',
-            'type': 'number',
-            'default': 320
+            'type': 'string',
+            'format': 'numeric',
+            'formatMinimum': '0',
+            'default': '320'
         },
         height: {
             'title': '高度',
-            'type': 'number',
-            'default': 180
+            'type': 'string',
+            'format': 'numeric',
+            'formatMinimum': '0',
+            'default': '180'
         },
         poster: {
             title: '初始图片',
