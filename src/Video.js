@@ -119,10 +119,22 @@ export class Video extends Component {
 }
 
 Video.propTypes = {
-    top: PropTypes.number.isRequired,
-    left: PropTypes.number.isRequired,
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
+    top: PropTypes.oneofType([
+        PropTypes.number,
+        PropTypes.string
+    ]).isRequired,
+    left: PropTypes.oneofType([
+        PropTypes.number,
+        PropTypes.string
+    ]).isRequired,
+    width: PropTypes.oneofType([
+        PropTypes.number,
+        PropTypes.string
+    ]).isRequired,
+    height: PropTypes.oneofType([
+        PropTypes.number,
+        PropTypes.string
+    ]).isRequired,
     poster: PropTypes.string,
     videoType: PropTypes.oneOf(['iframe', 'raw']),
     src: PropTypes.string,
