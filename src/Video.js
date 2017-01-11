@@ -119,19 +119,19 @@ export class Video extends Component {
 }
 
 Video.propTypes = {
-    top: PropTypes.oneofType([
+    top: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
     ]).isRequired,
-    left: PropTypes.oneofType([
+    left: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
     ]).isRequired,
-    width: PropTypes.oneofType([
+    width: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
     ]).isRequired,
-    height: PropTypes.oneofType([
+    height: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
     ]).isRequired,
